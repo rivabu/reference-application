@@ -1,0 +1,21 @@
+{
+  "name": "zbhpwaapp",
+  "version": "0.0.1",
+  "dependencies": {
+    "spectingular-core": "ssh://git@stash.europe.intranet:7999/bow/bower-spectingular-core.git#develop",
+    "spectingular-components": "ssh://git@stash.europe.intranet:7999/bow/bower-spectingular-components.git#develop",
+    "spectingular-dependencies": "ssh://git@stash.europe.intranet:7999/an/spectingular-dependencies.git#develop"
+  },
+  "devDependencies": {
+    "ingmock": "ssh://git@stash.europe.intranet:7999/bow/bower-ingmock.git#master",
+    "spectingular-mock": "ssh://git@stash.europe.intranet:7999/bow/bower-spectingular-mock.git#GAN-346-rewrite-urls",
+    "spectingular-demoviewer": "ssh://git@stash.europe.intranet:7999/bow/bower-spectingular-demoviewer.git#master"
+  },
+  "ignore": [
+    "*",
+    "scripts/**/*",
+    "!app/**/*",
+    "!test/**/*",
+    "!config/**/*"
+  ]
+}

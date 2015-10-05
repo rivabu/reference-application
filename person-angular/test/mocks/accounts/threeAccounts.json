@@ -1,0 +1,20 @@
+[
+    {
+        "balance": 250000,
+        "name": "dhr. K. A. Namaak",
+        "accountNumber": "NL32INGB0007654321",
+        "type": "Betaalrekening"
+    },
+    {
+        "balance": 31322.23,
+        "accountNumber": "NL32INGB0001234567",
+        "name": "M. A. Slagerij",
+        "type": "en-of-rekening"
+    },
+    {
+        "balance": 12.2,
+        "name": "Slagerij Van Dijk",
+        "accountNumber": "NL32INGB0001534276",
+        "type": "en-of-rekening"
+    }
+]

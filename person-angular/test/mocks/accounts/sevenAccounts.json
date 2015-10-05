@@ -1,0 +1,44 @@
+[
+    {
+        "balance": 250000,
+        "name": "K. A. Namaak",
+        "accountNumber": "NL32INGB0007654321",
+        "type": "betaalrekening"
+    },
+    {
+        "balance": 31322.23,
+        "accountNumber": "NL32INGB0001234567",
+        "name": "M. A. Slagerij",
+        "type": "en-of-rekening"
+    },
+    {
+        "balance": 12.2,
+        "name": "Slagerij Van Dijk",
+        "accountNumber": "NL32INGB0001534276",
+        "type": "en-of-rekening"
+    },
+    {
+        "balance": 6132,
+        "name": "vzw Manusje van alles",
+        "accountNumber": "NL32INGB0007654321",
+        "type": "betaalrekening"
+    },
+    {
+        "balance": 68663,
+        "name": "O.P. Bovenveld",
+        "accountNumber": "NL32INGB0005674321",
+        "type": "betaalrekening"
+    },
+    {
+        "balance": 564,
+        "name": "P.C. Ondergevel",
+        "accountNumber": "NL32INGB0005613247",
+        "type": "betaalrekening"
+    },
+    {
+        "balance": 122,
+        "name": "Garagedeur b.v.",
+        "accountNumber": "NL32INGB0007614523",
+        "type": "betaalrekening"
+    }
+]

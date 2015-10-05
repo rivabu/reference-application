@@ -1,0 +1,44 @@
+{
+  "name": "angularjs-person",
+  "main": "server.js",
+  "scripts": {
+	"start": "grunt"
+   },
+  "private": true,
+  "devDependencies": {
+    "express": "3.4.6",
+    "grunt": "0.4.4",
+    "grunt-bower-install": "1.0.2",
+    "grunt-concurrent": "0.5.0",
+    "grunt-connect-proxy": "^0.2.0",
+    "grunt-contrib-clean": "0.5.0",
+    "grunt-contrib-concat": "0.3.0",
+    "grunt-contrib-connect": "0.5.0",
+    "grunt-contrib-copy": "0.4.1",
+    "grunt-contrib-jshint": "0.7.2",
+    "grunt-contrib-uglify": "0.2.7",
+    "grunt-contrib-watch": "0.5.3",
+    "grunt-karma": "0.8.3",
+    "grunt-newer": "0.6.1",
+	"grunt-nodemon": ">=0.3.0",
+    "grunt-protractor-runner": "1.0.0",
+    "grunt-protractor-webdriver": "0.1.8",
+    "jshint-junit-reporter": "0.0.6",
+    "jshint-stylish": "0.1.5",
+    "karma": "0.12.14",
+    "karma-chrome-launcher": "0.1.3",
+    "karma-coverage": "0.2.1",
+    "karma-jasmine": "0.1.5",
+    "karma-junit-reporter": "0.2.1",
+    "karma-ng-html2js-preprocessor": "0.1.0",
+    "karma-ng-scenario": "0.1.0",
+    "karma-phantomjs-launcher": "0.1.4",
+    "load-grunt-tasks": "0.4.0",
+    "protractor": "0.24.1",
+    "request": "2.28.0",
+    "time-grunt": "0.2.10"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
+}
