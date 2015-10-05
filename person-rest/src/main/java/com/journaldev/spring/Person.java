@@ -2,11 +2,17 @@ package com.journaldev.spring;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Person implements Serializable{
  
     private static final long serialVersionUID = -7788619177798333712L;
 	private int id;
 
+	@NotNull
+	@NotEmpty
 	private String name;
 
 	private String country;

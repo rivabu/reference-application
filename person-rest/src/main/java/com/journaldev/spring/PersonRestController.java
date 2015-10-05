@@ -6,13 +6,15 @@ import static org.springframework.http.HttpStatus.OK;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,7 +70,11 @@ public class PersonRestController {
 	}
 	
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
-	public ResponseEntity<ReturnId> addPerson(@RequestBody PersonDB p) {
+	public ResponseEntity<ReturnId> addPerson( @Valid @RequestBody PersonDB p) throws MethodArgumentNotValidException {
+//		if (bindingResult.hasErrors()) {
+//            // This exception will be picked up by CustomResponseEntityExceptionHandler.handleMethodArgumentNotValid
+//            throw new MethodArgumentNotValidException(null, bindingResult);
+//        }
 		if (p.getId() == 0) {
 			// new person, add it
 			this.personService.addPerson(p);
@@ -80,7 +86,7 @@ public class PersonRestController {
 	}
 	
 	@RequestMapping(value = "/user", method = RequestMethod.PUT)
-	public ResponseEntity<ReturnId> updatePerson(@RequestBody PersonDB p) {
+	public ResponseEntity<ReturnId> updatePerson( @Valid @RequestBody PersonDB p) {
 		this.personService.updatePerson(p);
 		return new ResponseEntity<>(new ReturnId(p.getId()), OK);
 	}
