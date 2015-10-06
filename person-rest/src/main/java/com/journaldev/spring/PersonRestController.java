@@ -2,6 +2,7 @@ package com.journaldev.spring;
 
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +11,10 @@ import javax.validation.Valid;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -54,12 +55,19 @@ public class PersonRestController {
 	
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Person> getPersonById(@PathVariable("id") int id) {
-		PersonDB personDB = this.personService.getPersonById(id);
-		Person person = new Person();
-		person.setId(personDB.getId());
-		person.setCountry(personDB.getCountry());
-		person.setName(personDB.getName());
-		ResponseEntity<Person> response = new ResponseEntity<>(person, OK);
+		PersonDB personDB = null;
+		ResponseEntity<Person> response = null;
+		try {
+			personDB = this.personService.getPersonById(id);
+			
+			Person person = new Person();
+			person.setId(personDB.getId());
+			person.setCountry(personDB.getCountry());
+			person.setName(personDB.getName());
+			response = new ResponseEntity<Person>(person, OK);
+		} catch (ObjectNotFoundException e) {
+			response = new ResponseEntity<>(NOT_FOUND);
+		}
 		return response;
 	}
 	

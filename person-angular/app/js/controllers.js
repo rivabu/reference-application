@@ -68,5 +68,5 @@ app.controller('UserCreationCtrl', ['$scope', 'UserFactory', '$location',
         $scope.createNewUser = function () {
             UserFactory.create($scope.user);
             $location.path('/user-list');
-        }
+        };
     }]);
