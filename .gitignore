@@ -4,3 +4,7 @@
 /person-rest/.project
 /person-rest/.classpath
 /person-rest/.settings
+/SpringDataMongoDB/.classpath
+/SpringDataMongoDB/.project
+/SpringDataMongoDB/target
+/SpringDataMongoDB/.settings

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<mongo:mongo host="ds051858.mongolab.com" port="51858" id="mongo">
+		<mongo:options connections-per-host="8"
+			threads-allowed-to-block-for-connection-multiplier="4"
+			connect-timeout="1000" max-wait-time="1500" auto-connect-retry="true"
+			socket-keep-alive="true" socket-timeout="1500" slave-ok="true"
+			write-number="1" write-timeout="0" write-fsync="true" />
+	</mongo:mongo>
+
+
+	<mongo:mongo-client credentials="rivabu2:straal02@angular_app"
+		host="ds051858.mongolab.com" port="51858" />
+
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongo" ref="mongo" />
+		<constructor-arg name="databaseName" value="angular_app"></constructor-arg>
+	</bean>
+
+	<bean id="personDAO" class="com.journaldev.spring.mongodb.dao.PersonDAOImpl">
+		<constructor-arg name="mongoOps" ref="mongoTemplate" />
+	</bean>
+</beans>
