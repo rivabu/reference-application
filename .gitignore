@@ -8,3 +8,6 @@
 /SpringDataMongoDB/.project
 /SpringDataMongoDB/target
 /SpringDataMongoDB/.settings
+/WorldCountries/.settings
+/WorldCountries/.classpath
+*.project
