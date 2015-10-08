@@ -6,6 +6,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.MongoException;
 import com.mongodb.WriteConcern;
 import com.mongodb.WriteResult;
+import com.rients.queries.testdata.TestData;
 
 public class WriteConcernOverview {
     
@@ -39,5 +40,7 @@ public class WriteConcernOverview {
         
         System.out.println("Error from result: " + result.getError());
         System.out.println("Same error from DB: " + db.getLastError().getString("err"));
+        
+        countries.drop();
     }
 }

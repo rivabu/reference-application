@@ -7,7 +7,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.rients.queries.MongoDb;
-import com.rients.queries.TestData;
+import com.rients.queries.testdata.TestData;
 
 public class Admin {
     

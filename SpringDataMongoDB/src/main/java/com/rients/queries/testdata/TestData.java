@@ -1,4 +1,4 @@
-package com.rients.queries;
+package com.rients.queries.testdata;
 
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
@@ -6,6 +6,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
+import com.rients.queries.MongoDb;
 
 public class TestData {
     

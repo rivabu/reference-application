@@ -10,6 +10,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.rients.queries.testdata.TestData;
 
 public class Reading {
     
@@ -101,7 +102,7 @@ public class Reading {
         BasicDBObject doc = (BasicDBObject) countryList.get(0);
         ObjectId objectId = doc.getObjectId("_id");
         
-        long millis = objectId.getTime();
+        long millis = objectId.getDate().getTime();
         System.out.println("\n'" + doc.get("name") + "' created on " + new Date(millis));
     
     }
