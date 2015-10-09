@@ -13,3 +13,6 @@
 *.project
 /SpringFileUpload/.settings
 /SpringFileUpload/*.classpath
+/HibernateCore/.settings
+/HibernateCore/.classpath
+/HibernateCore/.project

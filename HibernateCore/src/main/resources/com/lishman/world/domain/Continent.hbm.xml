@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lishman.world.domain">
+
+    <class name="Continent" table="CONTINENT">
+        <id name="id" column="CONT_ID">
+            <generator class="identity"/>
+        </id>
+        <property name="name" column="CONT_NAME"/>
+        
+        <set name="countries" table="continent" inverse="true" lazy="true">
+            <key>
+                <column name="CONT_ID"/>
+            </key>
+            <one-to-many class="com.lishman.world.domain.Country"/>
+        </set>
+    </class>
+
+</hibernate-mapping>
+

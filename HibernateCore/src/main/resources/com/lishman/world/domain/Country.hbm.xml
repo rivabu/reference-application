@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lishman.world.domain">
+
+    <class name="Country" table="COUNTRY">
+        <id name="id" column="CTRY_ID">
+            <generator class="identity"/>
+        </id>
+        <property name="name" column="CTRY_NAME"/>
+        <property name="area"/>
+        <property name="population" column="POP"/>
+        <property name="populationUpdatedOn" type="timestamp" column="POP_UPD_ON"/>
+        <property name="currency"/>
+        
+        <many-to-one name="continent" class="com.lishman.world.domain.Continent" column="CONT_ID"/>
+    </class>
+
+</hibernate-mapping>
+
