@@ -1,0 +1,34 @@
+
+a:focus, a:hover {
+  text-decoration: none;
+}
+
+.selected {
+  color: ForestGreen !important;
+  border-bottom: 1px solid ForestGreen;
+}
+
+.small-gap {
+  margin-top: 10px;
+}
+
+.medium-gap {
+  margin-top: 20px;
+}
+
+.large-gap {
+  margin-top: 40px;
+}
+
+.maintenance-list li {
+  padding: 2px;
+}
+
+.maintenance-list li i:hover, .maintenance-list li span:hover {
+  cursor: pointer;
+}
+
+.danger {
+  color: FireBrick;  
+  padding: 2px;
+}

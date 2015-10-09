@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html ng-app="app">
+
+<head>
+  <title>Olympics</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/olympics.css">
+  <!-- lib -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-mocks.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  
+  <!-- core -->
+  <script src="app/core/core.module.js"></script>
+  <script src="app/core/constants.js"></script>
+  <script src="app/core/data-access.js"></script>
+  <script src="app/core/footer.js"></script>
+  <script src="app/core/http-mock.js"></script>  
+  
+  <!-- sports -->
+  <script src="app/sports/sports.module.js"></script>
+  <script src="app/sports/sport-list.js"></script>
+  <script src="app/sports/event-maintenance.js"></script>
+  
+  <!-- app -->
+  <script src="app/app.module.js"></script>
+  </head>
+<body>
+
+  <div ng-controller="SportList as sportsVm" class="container">
+    <h3>Olympic Sports <small>{{sportsVm.chosenSport.name && '(' + sportsVm.chosenSport.name + ')'}}</small></h3>
+    
+    <div ng-if="$root.error" class="alert alert-danger">{{$root.error}}</div>
+    
+    <div class="row">
+
+      <div class="col-md-3">
+        <input ng-model="search.name" type="search" placeholder="search for sport" class="form-control">
+        <ul class="list-unstyled small-gap">
+          <li ng-repeat="sport in sportsVm.sports | filter: search | orderBy: 'name'">
+            <a href="#" ng-click="sportsVm.getSport(sport.id)" ng-class="{selected: sport.id === sportsVm.chosenSport.id}">
+              {{sport.name}}
+            </a>
+        </ul>
+      </div>
+      
+      <div ng-if="sportsVm.chosenSport">
+        <div ng-controller="EventMaintenance as eventVm" class="col-md-8 large-gap">
+          <h4>{{sportsVm.chosenSport.name}} Events</h4>
+          <ul class="maintenance-list list-unstyled">
+            <li ng-repeat="event in sportsVm.chosenSport.events | orderBy: 'sequence'">
+              <i ng-click="eventVm.removeEvent(sportsVm.chosenSport, event)" class="glyphicon glyphicon-remove danger"></i> 
+              <span ng-click="eventVm.chooseEvent(event)" ng-class="{selected: event.id === eventVm.eventEditor.id}">
+                {{event.name}}
+              </span>
+          </ul>
+          <form ng-submit="eventVm.eventEditor.name && eventVm.saveEvent(sportsVm.chosenSport)" class="form-inline">
+            <input ng-model="eventVm.eventEditor.name" type="text" placeholder="new event name" class="form-control">
+            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i></button>
+            <button ng-click="eventVm.resetEventEditor()" type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+          </form>
+          <div class="medium-gap">
+            <a href="#" ng-click="eventVm.closeEvents()">close</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-include="'app/core/footer.html'"></div>
+  </div>
+  
+
+
+</body>
+</html>
