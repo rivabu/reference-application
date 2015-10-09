@@ -4,10 +4,10 @@ DROP TABLE ctry;
 ------------------------------------------------- County
 
 CREATE TABLE ctry (
-  ctry_id         NUMBER AUTO_INCREMENT,
-  ctry_name       VARCHAR2(50)  NOT NULL,
-  ctry_area       NUMBER        NOT NULL,
-  ctry_pop        NUMBER        NOT NULL,
+  ctry_id         INT(11) AUTO_INCREMENT,
+  ctry_name       VARCHAR(50)  NOT NULL,
+  ctry_area       INT(11),
+  ctry_pop        INT(11)        NOT NULL,
   CONSTRAINT ctry_pk  PRIMARY KEY (ctry_id),
   CONSTRAINT ctry_uk UNIQUE (ctry_name)
 );
