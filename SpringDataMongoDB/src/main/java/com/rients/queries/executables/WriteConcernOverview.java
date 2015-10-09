@@ -1,4 +1,4 @@
-package com.rients.queries;
+package com.rients.queries.executables;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;

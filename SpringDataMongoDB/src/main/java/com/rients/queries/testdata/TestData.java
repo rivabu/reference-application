@@ -6,7 +6,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
-import com.rients.queries.MongoDb;
+import com.rients.queries.executables.MongoDb;
 
 public class TestData {
     

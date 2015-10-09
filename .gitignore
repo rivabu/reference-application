@@ -12,3 +12,4 @@
 /WorldCountries/.classpath
 *.project
 /SpringFileUpload/.settings
+/SpringFileUpload/*.classpath

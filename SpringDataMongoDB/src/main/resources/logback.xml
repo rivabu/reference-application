@@ -11,7 +11,7 @@
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
     	<additionalField>req_id:_req_id</additionalField>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${catalina.base}/logs/${serverId}_app_%d.log</fileNamePattern>
+            <fileNamePattern>e:/java/logs/spring_mongo_app_%d.log</fileNamePattern>
         </rollingPolicy>
 		<encoder>
       		<pattern>%d [%X{req_id}] %-5p %c - %m%n</pattern>
@@ -21,6 +21,7 @@
 
     <root level="INFO">
         <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
     </root>
 
 </configuration>

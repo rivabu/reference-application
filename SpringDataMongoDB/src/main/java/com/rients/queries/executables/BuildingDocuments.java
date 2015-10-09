@@ -1,4 +1,4 @@
-package com.rients.queries;
+package com.rients.queries.executables;
 
 import java.net.UnknownHostException;
 
