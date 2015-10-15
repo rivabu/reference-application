@@ -14,7 +14,6 @@ sourceViewer.controller('fileContentController', function ($scope, $rootScope, $
     	if ($scope.found  === false && $scope.content === '') {
     		$scope.found = true;
 	    	Stub.getText({'filename': 'file.txt'}, function(response) {
-	            
 	            $scope.content = response.content;
 	        });
     	}

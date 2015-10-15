@@ -1,17 +1,33 @@
-sourceViewer.controller('sourceTreeController', function ($rootScope, $scope, $location) {
+'use strict';
 
-    $scope.tree =  [    { id : 1212, type: 'root', name: 'Rients Test' }, 
-    					{ id : 37980, type: 'dir', name: 'notes' },
-    					{ id : 37981, type: 'node', ext: 'js', name: 'data.js' },
-    					{ id : 37981, type: 'node', ext: 'txt', name: 'file.txt' },
-    					{ id : 37981, type: 'node', ext: 'rd', name: 'readme.rd' },
-    					{ id : 37982, type: 'node', ext: 'png', name: 'sports-snippet.png' },
-    					{ id : 37983, type: 'node', ext: 'png', name: 'sports-v1.0.png' },
-    					{ type: 'enddir' },
-      					{ id : 37984, type: 'node', ext: 'xml', name: 'pom.xml' },
-      					{ id : 37984, type: 'node', ext: 'rd', name: 'readme.rd' },
-    					{ type: 'endroot' }
-    				];
+//app.controller('DummyCtrl', ['$scope', 'DummyFactory', function ($scope, DummyFactory) {
+//    $scope.bla = 'bla from controller';
+//    DummyFactory.get({}, function (dummyFactory) {
+//        $scope.name = dummyFactory.name;
+//    });
+//}]);
+
+
+
+sourceViewer.controller('sourceTreeController', ['$rootScope', '$location', 'DataAccess', '$scope', function ($rootScope, $location, DataAccess, $scope) {
+
+    $scope.tree =  '';
+    
+    $scope.init = function () {
+    	var id = null;
+    	var key = 'id';
+    	var absUrl = $location.absUrl();
+        var search = absUrl.indexOf('?') > -1 ? absUrl.substr(absUrl.indexOf('?')+1) : '';
+        var searchParts = search.split('&');
+        for (var i=0; i< searchParts.length; i++) {
+            var keyvals = searchParts[i].split('=');
+            if (keyvals[0] === key) {
+                id =  keyvals[1];
+            }
+        }
+
+    	$scope.getTree(id);
+    }
     
     /*
      * It's worth noting that $broadcast is used to delegate events to child or sibling scopes, whereas $emit will bubble events upwards to the scope's parents, hence;
@@ -22,10 +38,39 @@ sourceViewer.controller('sourceTreeController', function ($rootScope, $scope, $l
     	$rootScope.$broadcast('showFile', id);
     	console.log('showFile send');
     	console.log("file clicked: " + id);
-    }
+    };
     
-     $scope.getTree = function () {
-     	var elements = $scope.tree;
+    $scope.openCloseDir= function (id) {
+    	console.log("openCloseDir: " + id);
+    	console.log("openCloseDir: " + $scope.tree);
+    	angular.forEach($scope.tree, function (elem) {
+    		console.log("elem: " + elem.id);
+    		if (elem.id == id) {
+    			if (elem.status == 'open') {
+    				elem.status = 'closed';
+    			} else {
+    				elem.status = 'open';
+    			}
+    		}
+    	})
+    	$scope.parsedTree = parseTreeToHtml($scope.tree);
+    };
+    
+     $scope.getTree = function (id) {
+    	 
+    	 DataAccess.getTree(id).then(function (result) {
+    		 $scope.tree = result.tree;
+    		 var result = parseTreeToHtml(result.tree);
+    		 console.log(result);
+    		 $scope.parsedTree = result;
+    	 }, function (result) {
+            console.log('error' + result);
+         });
+    	 
+    };	
+     
+    function parseTreeToHtml(tree) {
+    	var elements = tree;
      	var endresult = '<ul>';
      	for (var j in elements) {
             var type = elements[j].type;
@@ -37,7 +82,7 @@ sourceViewer.controller('sourceTreeController', function ($rootScope, $scope, $l
 				endresult = endresult + '</ul>';
 			}
 			if (type === 'dir') {
-				endresult = endresult + '<li id=\'' + elements[j].id + '\' class=\'open\'><div class=\'dir open-close\'></div> <span class=\'dir open-close folder\'>' + elements[j].name +'</span>';
+				endresult = endresult + '<li id=\'' + elements[j].id + '\' class=\'' + elements[j].status + '\' ><div class=\'dir open-close\' ng-click=\"openCloseDir(\'' + elements[j].id + '\')\"></div> <span class=\'dir open-close folder\' ng-click=\"openCloseDir(\'' + elements[j].id + '\')\">' + elements[j].name +'</span>';
 		        endresult = endresult + '<ul>';
 			}
 			if (type === 'enddir') {
@@ -48,11 +93,13 @@ sourceViewer.controller('sourceTreeController', function ($rootScope, $scope, $l
 			}
      	}
      	endresult = endresult + '</ul>';
-     	endresult = endresult.replace(/\t/g, '');
+     	endresult = endresult.replace(/\t/g, '');    	
      	return endresult;
-    }		
+    } 
     
-});
+    $scope.init();
+    
+}]);
 
 //Here $watch used for automatic rendering, it listening directive's content value if content changed then it works. 
 //If you think your directive works only single time then you don't need $watch. 
@@ -65,7 +112,7 @@ sourceViewer.directive('tree', function($compile, $parse) {
         scope.$watch(attr.content, function() {
           element.html($parse(attr.content)(scope));
           $compile(element.contents())(scope);
-        }, true);
+        }, false);
       }
     }
   });

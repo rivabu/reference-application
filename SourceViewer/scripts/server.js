@@ -6,7 +6,29 @@ var http = require('http');
 var app = express();
 var apiServer = 'http://127.0.0.1:8081';
 
-
+var tree = { "tree" : [    { id : 1212, type: 'root', name: 'Rients Test' }, 
+ 				{ id : 37980, type: 'dir', name: 'notes', status: 'open' },
+ 				{ id : 37981, type: 'node', ext: 'js', name: 'data.js' },
+ 				{ id : 37981, type: 'node', ext: 'txt', name: 'file.txt' },
+ 				{ id : 37981, type: 'node', ext: 'rd', name: 'readme.rd' },
+ 				{ id : 37982, type: 'node', ext: 'png', name: 'sports-snippet.png' },
+ 				{ id : 37983, type: 'node', ext: 'png', name: 'sports-v1.0.png' },
+ 				{ id : 37990, type: 'dir', name: 'notes', status: 'open' },
+ 				{ id : 37981, type: 'node', ext: 'js', name: 'data2.js' },
+ 				{ type: 'enddir' },
+ 				{ id : 37970, type: 'dir', name: 'notes', status: 'open' },
+ 				{ id : 37971, type: 'node', ext: 'js', name: 'data2.js' },
+ 				{ type: 'enddir' },
+ 				{ type: 'enddir' },
+  					{ id : 37984, type: 'node', ext: 'xml', name: 'pom.xml' },
+  					{ id : 37984, type: 'node', ext: 'rd', name: 'readme.rd' },
+ 				{ type: 'endroot' }
+ 			]};
+var treeSmall = { "tree" : [    { id : 1212, type: 'root', name: 'Rients Test2' },
+             					{ id : 37984, type: 'node', ext: 'xml', name: 'pom.xml' },
+             					{ id : 37984, type: 'node', ext: 'rd', name: 'readme.rd' },
+            				{ type: 'endroot' }
+            			]};
 // simple logger
 app.use(function(req, res, next){
     next();
@@ -19,11 +41,23 @@ app.use(express.json());
 app.use(express.static(__dirname + '/..'));
 console.log('Serving static content from' + __dirname + '/..');
 
-// get all users
-app.get('/person/list', function(req, res) {
-    var newurl = apiServer + '/person/list';
-  	request(newurl).pipe(res)
+
+
+app.get('/api/sourcetree', function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    if (req.query.id === '0' || req.query.id === undefined) {
+        var delay = req.query.delayed || 1;
+        delay = parseInt(req.query.id, 10) || delay;
+        setTimeout(function () {
+            res.send(tree);
+        }, delay);
+    } else if (req.query.id === '1') {
+        res.send(tree);
+    } else if (req.query.id === '2') {
+        res.send(treeSmall);
+    } 
 });
+
 
 //get user by id
 app.get('/person/user/:id', function(req, res) {
