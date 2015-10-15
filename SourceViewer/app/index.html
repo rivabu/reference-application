@@ -38,28 +38,7 @@
 	</header>
 
 	<div id="container">
-
-		<div id="splitter">
-
-			<div class="left-panel">
-				<div ng-include="'/app/partials/project-tree.html'"></div>
-			</div>
-
-			<div class="vsplitter">
-				<div class="minimizer"></div>
-			</div>
-
-			<div class="right-panel">
-				<div ng-include="'/app/partials/source.html'"></div>
-			</div>
-
-		</div>
-
-		<aside class="shadow hidden view-mode" id="guide">
-			<div ng-include="'/app/partials/guide.html'"></div>
-
-		</aside>
-
+		 <ng-view></ng-view>
 	</div>
 
 	<div></div>
@@ -67,6 +46,7 @@
 	<script src="/app/js/app.module.js"></script>
 	<script src="/app/js/sourceTreeController.js"></script>
 	<script src="/app/js/fileContentController.js"></script>
+	<script src="/app/js/frontPageController.js"></script>
 	<script src="/app/js/data-access.js"></script>
 	<script src="/app/js/http-mock.js"></script>
 

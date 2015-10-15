@@ -1,0 +1,14 @@
+<div>
+<h1>Dit de is frontpage.</h1>
+
+Hier komt een lijst met alle projecten<br />
+
+waar je op kan klikken, zodat je naar de projecten pagina gaat.<br />
+        <ul class="list-unstyled small-gap">
+          <li ng-repeat="project in projecten | filter: search | orderBy: 'id'">
+            <a href="#/main/{{project.id}}">
+              {{project.name}}              
+            </a> {{project.description}}
+        </ul>
+
+</div>

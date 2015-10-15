@@ -9,24 +9,15 @@
 
 
 
-sourceViewer.controller('sourceTreeController', ['$rootScope', '$location', 'DataAccess', '$scope', function ($rootScope, $location, DataAccess, $scope) {
+sourceViewer.controller('sourceTreeController', ['$rootScope', '$routeParams', '$location', 'DataAccess', '$scope', function ($rootScope, $routeParams, $location, DataAccess, $scope) {
 
     $scope.tree =  '';
+    $scope.id = $routeParams.id;
     
     $scope.init = function () {
-    	var id = null;
-    	var key = 'id';
-    	var absUrl = $location.absUrl();
-        var search = absUrl.indexOf('?') > -1 ? absUrl.substr(absUrl.indexOf('?')+1) : '';
-        var searchParts = search.split('&');
-        for (var i=0; i< searchParts.length; i++) {
-            var keyvals = searchParts[i].split('=');
-            if (keyvals[0] === key) {
-                id =  keyvals[1];
-            }
-        }
+    	
 
-    	$scope.getTree(id);
+    	$scope.getTree($scope.id);
     }
     
     /*
