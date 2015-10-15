@@ -1,18 +1,11 @@
 <!DOCTYPE html>
-
-
 <html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
 <meta charset="utf-8" />
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
-<title>Angular Olympics v1.0 with Tests</title>
-
-<meta content="Source: The Angular Olympics application version 1.0, getting started. Includes Jasmine tests with SpecRunner,"
-	name="description" />
-<meta content="Mark Lishman" name="author" />
+<title>Rients zijn knowledge base</title>
+<meta content="Rients van Buren" name="author" />
 <meta content="width=device-width" name="viewport" />
-
 <link href="/app/css/source.css" rel="stylesheet" />
 <script src="lib/angular-1.2.15/angular.min.js"></script>
 <script src="lib/angular-1.2.15/angular-route.min.js"></script>
@@ -21,35 +14,17 @@
 <script src="lib/angular-1.2.15/angular-sanitize.min.js"></script>
 <script src="lib/angular-1.2.15/angular-cookies.min.js"></script>
 <script src="lib/angular-1.2.15/angular-mocks.js"></script>
-
 </head>
-
 <body ng-app="sourceViewer">
-
 	<div>
 		<!--[if lte IE 8]><p class=chromeframe>Your browser is not supported. Please upgrade to a newer browser to experience this site.</p><![endif]-->
 	</div>
-
-	<header class="wrapper clearfix">
-		<div ng-include="'/app/partials/header.html'"></div>
-		<div class="breadcrumb">
-			<span id="guide-breadcrumb"></span> <span class="tip">Tip: click on underlined words in the guide to highlight source code</span>
-		</div>
-	</header>
-
-	<div id="container">
-		 <ng-view></ng-view>
-	</div>
-
-	<div></div>
-
+	<ng-view></ng-view>
 	<script src="/app/js/app.module.js"></script>
 	<script src="/app/js/sourceTreeController.js"></script>
 	<script src="/app/js/fileContentController.js"></script>
 	<script src="/app/js/frontPageController.js"></script>
 	<script src="/app/js/data-access.js"></script>
 	<script src="/app/js/http-mock.js"></script>
-
-
 </body>
 </html>

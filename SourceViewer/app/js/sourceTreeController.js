@@ -1,23 +1,12 @@
 'use strict';
 
-//app.controller('DummyCtrl', ['$scope', 'DummyFactory', function ($scope, DummyFactory) {
-//    $scope.bla = 'bla from controller';
-//    DummyFactory.get({}, function (dummyFactory) {
-//        $scope.name = dummyFactory.name;
-//    });
-//}]);
-
-
-
 sourceViewer.controller('sourceTreeController', ['$rootScope', '$routeParams', '$location', 'DataAccess', '$scope', function ($rootScope, $routeParams, $location, DataAccess, $scope) {
 
     $scope.tree =  '';
-    $scope.id = $routeParams.id;
+    $scope.projectId = $routeParams.id;
     
     $scope.init = function () {
-    	
-
-    	$scope.getTree($scope.id);
+    	$scope.getTree($scope.projectId);
     }
     
     /*
@@ -47,9 +36,9 @@ sourceViewer.controller('sourceTreeController', ['$rootScope', '$routeParams', '
     	$scope.parsedTree = parseTreeToHtml($scope.tree);
     };
     
-     $scope.getTree = function (id) {
+     $scope.getTree = function (projectId) {
     	 
-    	 DataAccess.getTree(id).then(function (result) {
+    	 DataAccess.getTree(projectId).then(function (result) {
     		 $scope.tree = result.tree;
     		 var result = parseTreeToHtml(result.tree);
     		 console.log(result);

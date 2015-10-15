@@ -1,14 +1,27 @@
-<div>
-<h1>Dit de is frontpage.</h1>
 
-Hier komt een lijst met alle projecten<br />
-
-waar je op kan klikken, zodat je naar de projecten pagina gaat.<br />
-        <ul class="list-unstyled small-gap">
-          <li ng-repeat="project in projecten | filter: search | orderBy: 'id'">
-            <a href="#/main/{{project.id}}">
-              {{project.name}}              
-            </a> {{project.description}}
-        </ul>
-
+<div id="outer-container">
+	<header class="wrapper clearfix">
+		<div ng-include="'/app/partials/header.html'"></div>
+		<div class="breadcrumb">
+			<span id="guide-breadcrumb"></span> <span class="tip">Tip: click on underlined words in the guide to highlight source code</span>
+		</div>
+	</header>
+	<div id="container">
+		<br /> <br />
+		<div class="lesson-details markdown">
+			<div class="md">
+				<h1>This are some sample projects</h1>
+				<p>We will see how a simple Spring MVC application receives a request, reads a value from a properties file, and outputs a
+					message on a web page.</p>
+				<hr />
+				<div ng-repeat="project in projecten | filter: search | orderBy: 'id'">
+					<h4>
+						<a href="#/main/{{project.id}}">{{project.name}}</a>
+					</h4>
+					<p>{{project.description}}</p>
+					<hr />
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

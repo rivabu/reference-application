@@ -1,19 +1,23 @@
-<div id="splitter">
+
+	<header class="wrapper clearfix">
+		<div ng-include="'/app/partials/header.html'"></div>
+		<div class="breadcrumb">
+			<span id="guide-breadcrumb"></span> <span class="tip">Tip: click on underlined words in the guide to highlight source code</span>
+		</div>
+	</header>
+	<div id="container">
+		<div id="splitter">
 			<div class="left-panel">
 				<div ng-include="'/app/partials/project-tree.html'"></div>
 			</div>
-
 			<div class="vsplitter">
 				<div class="minimizer"></div>
 			</div>
-
 			<div class="right-panel">
 				<div ng-include="'/app/partials/source.html'"></div>
 			</div>
-
 		</div>
-
-		<aside class="shadow hidden view-mode" id="guide">
+		<aside class="shadow hidden view-mode" id="guide" style="width: 500px; height: 400px; left: 1100px; top: 70px;">
 			<div ng-include="'/app/partials/guide.html'"></div>
-
 		</aside>
+	</div>
