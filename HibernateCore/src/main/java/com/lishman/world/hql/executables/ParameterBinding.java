@@ -1,4 +1,4 @@
-package com.lishman.world.hql;
+package com.lishman.world.hql.executables;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
