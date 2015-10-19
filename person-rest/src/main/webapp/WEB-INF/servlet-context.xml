@@ -12,6 +12,9 @@
  
     <!-- Enables the Spring MVC @Controller programming model -->
     <annotation-driven />
+    
+    <context:component-scan base-package="com.journaldev.spring" />
+    
  
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving 
         up static resources in the ${webappRoot}/resources directory -->
@@ -58,7 +61,6 @@
     <beans:bean id="personService" class="com.journaldev.spring.service.PersonServiceImpl">
         <beans:property name="personDAO" ref="personDAO"></beans:property>
     </beans:bean>
-    <context:component-scan base-package="com.journaldev.spring" />
      
     <tx:annotation-driven transaction-manager="transactionManager"/>
      
