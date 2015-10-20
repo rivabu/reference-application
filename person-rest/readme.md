@@ -1,4 +1,4 @@
-person applicatie:
+person-rest applicatie:
 
 angular
 

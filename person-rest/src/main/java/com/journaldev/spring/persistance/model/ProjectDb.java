@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 @Table(name = "PERSON")
-public class PersonDB {
+public class ProjectDb {
 
 	@Id
 	@Column(name = "id")

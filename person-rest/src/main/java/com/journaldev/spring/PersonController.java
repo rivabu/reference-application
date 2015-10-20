@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.journaldev.spring.persistance.model.PersonDB;
+import com.journaldev.spring.persistance.model.ProjectDb;
 import com.journaldev.spring.service.PersonService;
 
 @Controller
@@ -25,14 +25,14 @@ public class PersonController {
 
 	@RequestMapping(value = "/persons", method = RequestMethod.GET)
 	public String listPersons(Model model) {
-		model.addAttribute("person", new PersonDB());
+		model.addAttribute("person", new ProjectDb());
 		model.addAttribute("listPersons", this.personService.listPersons());
 		return "person";
 	}
 
 	// For add and update person both
 	@RequestMapping(value = "/person/add", method = RequestMethod.POST)
-	public String addPerson(@ModelAttribute("person") PersonDB p) {
+	public String addPerson(@ModelAttribute("person") ProjectDb p) {
 
 		if (p.getId() == 0) {
 			// new person, add it

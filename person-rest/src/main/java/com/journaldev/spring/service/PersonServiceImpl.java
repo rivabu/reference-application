@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.journaldev.spring.dao.PersonDAO;
-import com.journaldev.spring.persistance.model.PersonDB;
+import com.journaldev.spring.persistance.model.ProjectDb;
 
 @Service
 public class PersonServiceImpl implements PersonService {
@@ -19,25 +19,25 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	@Transactional
-	public void addPerson(PersonDB p) {
+	public void addPerson(ProjectDb p) {
 		this.personDAO.addPerson(p);
 	}
 
 	@Override
 	@Transactional
-	public void updatePerson(PersonDB p) {
+	public void updatePerson(ProjectDb p) {
 		this.personDAO.updatePerson(p);
 	}
 
 	@Override
 	@Transactional
-	public List<PersonDB> listPersons() {
+	public List<ProjectDb> listPersons() {
 		return this.personDAO.listPersons();
 	}
 
 	@Override
 	@Transactional
-	public PersonDB getPersonById(int id) {
+	public ProjectDb getPersonById(int id) {
 		return this.personDAO.getPersonById(id);
 	}
 

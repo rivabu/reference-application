@@ -43,7 +43,7 @@
         <beans:property name="dataSource" ref="dataSource" />
         <beans:property name="annotatedClasses">
             <beans:list>
-                <beans:value>com.journaldev.spring.persistance.model.PersonDB</beans:value>
+                <beans:value>com.journaldev.spring.persistance.model.ProjectDb</beans:value>
             </beans:list>
         </beans:property>
         <beans:property name="hibernateProperties">

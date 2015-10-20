@@ -29,6 +29,8 @@ var treeSmall = { "tree" : [    { id : 1212, type: 'root', name: 'Rients Test2' 
              					{ id : 37984, type: 'node', ext: 'rd', name: 'readme.rd' },
             				{ type: 'endroot' }
             			]};
+
+var projecten = [{"id":1,"name":"Project 1","description":"My first project"}];
 // simple logger
 app.use(function(req, res, next){
     next();
@@ -56,6 +58,13 @@ app.get('/api/sourcetree', function (req, res) {
     } else if (req.query.id === '2') {
         res.send(treeSmall);
     } 
+});
+
+//get all projects
+app.get('/project/list', function(req, res) {
+    var newurl = apiServer + '/sourceviewer-rest/project/list';
+  	request(newurl).pipe(res)
+//	res.send(projecten);
 });
 
 
