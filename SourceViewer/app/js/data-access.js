@@ -14,7 +14,7 @@ angular.module('sourceViewer').factory('ProjectsFactory', ['$q', '$resource', fu
 }]);
 
 angular.module('sourceViewer').factory('DataAccess', ['$q', '$resource', function ($q, $resource) {
-    var resourceTree = $resource('/api/sourcetree', {}, {
+    var resourceTree = $resource('/api/sourcetree/:id', {}, {
         getTree: {
             method: 'GET',
             isArray: false

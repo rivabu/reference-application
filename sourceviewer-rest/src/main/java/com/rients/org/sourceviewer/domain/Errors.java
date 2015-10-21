@@ -1,4 +1,4 @@
-package com.rients.org.sourceviewer;
+package com.rients.org.sourceviewer.domain;
 
 import java.util.ArrayList;
 import java.util.List;

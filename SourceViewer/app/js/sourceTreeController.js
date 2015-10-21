@@ -3,9 +3,10 @@
 sourceViewer.controller('sourceTreeController', ['$rootScope', '$routeParams', '$location', 'DataAccess', '$scope', function ($rootScope, $routeParams, $location, DataAccess, $scope) {
 
     $scope.tree =  '';
-    $scope.projectId = $routeParams.id;
+    $scope.projectId = $routeParams.projectId;
     
     $scope.init = function () {
+        $scope.projectId = $routeParams.projectId;
     	$scope.getTree($scope.projectId);
     }
     
@@ -36,11 +37,12 @@ sourceViewer.controller('sourceTreeController', ['$rootScope', '$routeParams', '
     	$scope.parsedTree = parseTreeToHtml($scope.tree);
     };
     
-     $scope.getTree = function (projectId) {
-    	 
+     $scope.getTree = function(projectId) {
+    	 console.log("$routeParams: " + JSON.stringify($routeParams));
+    	 console.log("getTree: " + projectId);
     	 DataAccess.getTree(projectId).then(function (result) {
     		 $scope.tree = result.tree;
-    		 var result = parseTreeToHtml(result.tree);
+    		 var result = parseTreeToHtml(result);
     		 console.log(result);
     		 $scope.parsedTree = result;
     	 }, function (result) {
@@ -49,8 +51,8 @@ sourceViewer.controller('sourceTreeController', ['$rootScope', '$routeParams', '
     	 
     };	
      
-    function parseTreeToHtml(tree) {
-    	var elements = tree;
+    function parseTreeToHtml(result) {
+    	var elements = result.elements;
      	var endresult = '<ul>';
      	for (var j in elements) {
             var type = elements[j].type;
