@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +24,6 @@ import com.rients.org.sourceviewer.service.ProjectBo;
 import com.rients.org.sourceviewer.service.ProjectService;
 
 @RestController
-@Produces(MediaType.APPLICATION_JSON)
 public class ProjectRestController {
 	@Autowired
 	private ProjectService projectService;

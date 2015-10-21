@@ -1,20 +1,12 @@
-package com.rients.org.sourceviewer.domain;
+package com.rients.org.sourceviewer.service;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.rients.org.sourceviewer.domain.Type;
 
 public class TreeElement {
 	private int id;
-	
-	private Type type;
-	
-	@JsonInclude(Include.NON_NULL)
+	private String type;
 	private String extension;
-	
-	@JsonInclude(Include.NON_NULL)
 	private String name;
-	
-	@JsonInclude(Include.NON_NULL)
 	private String fileId;
 	
 	public int getId() {
@@ -23,10 +15,10 @@ public class TreeElement {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Type getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(Type type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	public String getExtension() {

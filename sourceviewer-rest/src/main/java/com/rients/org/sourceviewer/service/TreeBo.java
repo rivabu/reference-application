@@ -1,9 +1,10 @@
-package com.rients.org.sourceviewer.domain;
+package com.rients.org.sourceviewer.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tree {
+
+public class TreeBo {
 
 	private int id;
 	
