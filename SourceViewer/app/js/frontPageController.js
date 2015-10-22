@@ -1,4 +1,4 @@
-sourceViewer.controller('frontPageController', ['$rootScope', '$location', 'ProjectsFactory', '$scope', function ($rootScope, $location, ProjectsFactory, $scope) {
+sourceViewer.controller('frontPageController', ['$rootScope', '$location', 'DataAccess', '$scope', function ($rootScope, $location, DataAccess, $scope) {
 
 //    $scope.projecten = [
 //                        {"name": "1. Model-View-Controller Walk-Through", "id": 1, "description" : "We start with a quick walk-through of the application to show how the model, view and controller work together."},
@@ -10,15 +10,15 @@ sourceViewer.controller('frontPageController', ['$rootScope', '$location', 'Proj
     
     $scope.init = function() {
     	console.log('bla');
-    	$scope.projecten = ProjectsFactory.query();
+
     	
-//    	DataAccess.getProjects().then(function(projecten) {
-//	       console.log('projecten listed: ' + JSON.stringify(projecten));
-//	       $scope.projecten = projecten;
-//	   	   console.log('result: ' + projecten);
-//   	 	}, function (result) {
-//           console.log('error' + result);
-//        });
+    	DataAccess.getProjects().then(function(projecten) {
+	       console.log('projecten listed: ' + JSON.stringify(projecten));
+	       $scope.projecten = projecten.projecten;
+	   	   console.log('result: ' + projecten);
+   	 	}, function (result) {
+           console.log('error' + result);
+        });
     }
     
     $scope.showProject = function(id) {
@@ -28,6 +28,10 @@ sourceViewer.controller('frontPageController', ['$rootScope', '$location', 'Proj
 		console.log('location path: ' + url);
     }
     
+    $scope.delete = function(id) {
+    	DataAccess.deleteProject(id);
+    	$location.path('/');
+    }
     $scope.init();
 }]);
 

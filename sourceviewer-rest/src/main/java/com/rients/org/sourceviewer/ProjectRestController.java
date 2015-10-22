@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rients.org.sourceviewer.domain.Project;
+import com.rients.org.sourceviewer.domain.ProjectData;
 import com.rients.org.sourceviewer.domain.ReturnId;
 import com.rients.org.sourceviewer.service.ProjectBo;
 import com.rients.org.sourceviewer.service.ProjectService;
@@ -28,10 +29,8 @@ public class ProjectRestController {
 	@Autowired
 	private ProjectService projectService;
 
-	
-    
 	@RequestMapping(value = "/project/list", method = RequestMethod.GET)
-	public ResponseEntity<List<Project>> listProjects() {
+	public ResponseEntity<ProjectData> listProjects() {
 		List<ProjectBo> projectBos = this.projectService.listProjects();
 		List<Project> projecten = new ArrayList<Project>();
 		for (ProjectBo projectBo : projectBos) {
@@ -41,17 +40,19 @@ public class ProjectRestController {
 			project.setName(projectBo.getName());
 			projecten.add(project);
 		}
-		ResponseEntity<List<Project>> response = new ResponseEntity<List<Project>>(projecten, OK);
+		ProjectData projectData = new ProjectData();
+		projectData.setProjecten(projecten);
+		ResponseEntity<ProjectData> response = new ResponseEntity<ProjectData>(projectData, OK);
 		return response;
 	}
-	
+
 	@RequestMapping(value = "/project/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Project> getProjectById(@PathVariable("id") int id) {
 		ProjectBo projectBo = null;
 		ResponseEntity<Project> response = null;
 		try {
 			projectBo = this.projectService.getProjectById(id);
-			
+
 			Project project = new Project();
 			project.setId(projectBo.getId());
 			project.setDescription(projectBo.getDescription());
@@ -62,22 +63,27 @@ public class ProjectRestController {
 		}
 		return response;
 	}
-	
+
 	@RequestMapping(value = "/project/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Object> removeProject(@PathVariable("id") int id) {
 		this.projectService.removeProject(id);
 		return new ResponseEntity<>(NO_CONTENT);
 	}
-	
+
 	@RequestMapping(value = "/project", method = RequestMethod.POST)
-	public ResponseEntity<ReturnId> addProject( @Valid @RequestBody ProjectBo p) throws MethodArgumentNotValidException {
-//		if (bindingResult.hasErrors()) {
-//            // This exception will be picked up by CustomResponseEntityExceptionHandler.handleMethodArgumentNotValid
-//            throw new MethodArgumentNotValidException(null, bindingResult);
-//        }
+	public ResponseEntity<ReturnId> addProject(@Valid @RequestBody ProjectBo p) throws MethodArgumentNotValidException {
+		// if (bindingResult.hasErrors()) {
+		// // This exception will be picked up by
+		// CustomResponseEntityExceptionHandler.handleMethodArgumentNotValid
+		// throw new MethodArgumentNotValidException(null, bindingResult);
+		// }
 		int id = 0;
 		if (p.getId() == -1) {
 			// new person, add it
+			ProjectBo projectBo = this.projectService.getProjectByName(p.getName());
+			if (projectBo != null) {
+				this.projectService.removeProject(projectBo.getId());
+			}
 			id = this.projectService.addProject(p);
 		} else {
 			// throw exception
@@ -85,12 +91,11 @@ public class ProjectRestController {
 		return new ResponseEntity<>(new ReturnId(id), OK);
 
 	}
-	
+
 	@RequestMapping(value = "/project", method = RequestMethod.PUT)
-	public ResponseEntity<ReturnId> updateProject( @Valid @RequestBody ProjectBo p) {
+	public ResponseEntity<ReturnId> updateProject(@Valid @RequestBody ProjectBo p) {
 		this.projectService.updateProject(p);
 		return new ResponseEntity<>(new ReturnId(p.getId()), OK);
 	}
- 
-}
 
+}

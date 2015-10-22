@@ -102,7 +102,11 @@ app.get('/project/list', function(req, res) {
   	request(newurl).pipe(res)
 //	res.send(projecten);
 });
+//delete proejct
+app.delete('/project/:id', function(req, res) {
+    forwardPostPutDelete(req, res, 'DELETE', '/sourceviewer-rest/project/'+req.params.id);
 
+});
 
 //get user by id
 app.get('/person/user/:id', function(req, res) {

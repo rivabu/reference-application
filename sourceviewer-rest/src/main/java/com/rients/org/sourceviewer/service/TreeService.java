@@ -20,10 +20,8 @@ public class TreeService {
 	}
 
 	public int addTree(TreeBo p) {
-		int id = TreeDao.getMaxId() + 1;
-		p.setId(id);
 		TreeDao.create(p);
-		return id;
+		return p.getId();
 	}
 
 	public int updateTree(TreeBo p) {

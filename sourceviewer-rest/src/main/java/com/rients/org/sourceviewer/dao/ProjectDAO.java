@@ -17,4 +17,6 @@ public interface ProjectDAO {
 	public int deleteById(int id);
 
 	public int getMaxId();
+
+	public ProjectBo readByName(String name);
 }

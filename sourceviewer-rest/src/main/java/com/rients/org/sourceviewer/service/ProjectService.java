@@ -21,6 +21,11 @@ public class ProjectService {
 		return projectDao.readById(id);
 	}
 
+	public ProjectBo getProjectByName(String name) {
+		return projectDao.readByName(name);
+	}
+
+	
 	public void removeProject(int id) {
 		projectDao.deleteById(id);
 	}
