@@ -10,6 +10,8 @@ import java.util.zip.ZipInputStream;
 
 import org.apache.commons.io.FileUtils;
 
+import com.rients.org.sourceviewer.domain.Project;
+
 public class Unzip {
 
 	String zipFile = null;
@@ -55,7 +57,7 @@ public class Unzip {
 		return returnValue;
 	}
 
-	void unzipFunction() throws IOException {
+	Project unzipFunction() throws IOException {
 		if (ignores == null) {
 			loadIgnoreFiles();
 		}
@@ -68,11 +70,15 @@ public class Unzip {
 		// buffer for read and write data to file
 		byte[] buffer = new byte[2048];
 
+		Project project = new Project();
 		try {
 			FileInputStream fInput = new FileInputStream(zipFile);
 			ZipInputStream zipInput = new ZipInputStream(fInput);
 
 			ZipEntry entry = zipInput.getNextEntry();
+        	project.setName(entry.getName().substring(0,  entry.getName().indexOf("/")));
+        	project.setDescription("The description new for the " + entry.getName() + " project");
+
 
 			while (entry != null) {
 				String entryName = entry.getName();
@@ -114,6 +120,7 @@ public class Unzip {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return project;
 	}
 
 	private static void createDirs(String destinationFolder, String entryName) {

@@ -58,7 +58,10 @@ public class TreeRestController {
 	@RequestMapping(value = "/tree", method = RequestMethod.POST)
 	public ResponseEntity<ReturnId> addProject( @Valid @RequestBody Tree tree) throws MethodArgumentNotValidException {
 		TreeBo treeBo = convertToTreeBo(tree);
-		
+		TreeBo oldTreeBo = treeService.getTreeById(treeBo.getId());
+		if (oldTreeBo != null) {
+			treeService.removeTree(treeBo.getId());
+		}
 		treeService.addTree(treeBo);
 		return new ResponseEntity<>(new ReturnId(tree.getId()), OK);
 

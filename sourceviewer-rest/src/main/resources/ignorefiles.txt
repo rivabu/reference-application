@@ -1,0 +1,8 @@
+.jar
+/lib
+/.settings
+.class
+.classpath
+.project
+/META-INF
+/target

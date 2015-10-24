@@ -3,12 +3,10 @@ package com.rients.org.sourceviewer.executables;
 import java.io.File;
 import java.io.IOException;
 
-import com.rients.org.sourceviewer.domain.Project;
-
 public class Initializer {
 
-	public Project getZipfile(String root) throws IOException {
-		Project project = new Project();
+	public String getZipfile(String root) throws IOException {
+		String zipFilename= "";
 		File directory = new File(root + "//input");
 		if(directory.exists()) {
 		    File[] files = directory.listFiles();
@@ -19,12 +17,10 @@ public class Initializer {
 			    }
 		        for(File f: files) {
 		            if(f.isDirectory()) {
-		            	System.out.println("directory found in input");
+		            	System.out.println("directory found in input, but zip file expected.");
 						System.exit(-1);
 		            } else {
-		            	String projectName = f.getName().substring(0, f.getName().indexOf("."));
-		            	project.setName(projectName);
-		            	project.setDescription("The description new for the " + f.getName() + " project");
+		            	zipFilename = f.getCanonicalPath();
 		            }
 		        }
 		    } else {
@@ -36,7 +32,7 @@ public class Initializer {
 			System.out.println("input directory missing!");
 			System.exit(-1);
 		}
-		return project;
+		return zipFilename;
 	}
 
 }

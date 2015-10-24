@@ -1,5 +1,5 @@
 package com.rients.org.sourceviewer.domain;
 
 public enum Type {
- root, endroot, node
+ root, endroot, node, dir, enddir
 }
