@@ -96,6 +96,12 @@ app.get('/api/sourcetree/:id', function(req, res) {
   	request(newurl).pipe(res)
 });
 
+//get file by id
+app.get('/api/file/:id', function(req, res) {
+    var newurl = apiServer + '/sourceviewer-rest/file/'+req.params.id;
+  	request(newurl).pipe(res)
+});
+
 //get all projects
 app.get('/project/list', function(req, res) {
     var newurl = apiServer + '/sourceviewer-rest/project/list';

@@ -1,6 +1,7 @@
 package com.rients.org.sourceviewer.executables;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import com.rients.org.sourceviewer.domain.Tree;
@@ -11,11 +12,11 @@ public class ProjectTree {
 	int counter = 1;
 	List<TreeElement> list;
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws IOException {
 		ProjectTree pt = new ProjectTree();
 		pt.generate(1, "TheCrudder", "E://UPLOAD");
 	}
-	public Tree generate(int projectId, String projectName, String root) {
+	public Tree generate(int projectId, String projectName, String root) throws IOException {
 		File directory = new File(root + "//processing//" + projectName);
 		Tree tree = new Tree();
 		tree.setId(projectId);
@@ -39,7 +40,7 @@ public class ProjectTree {
 		return tree;
 	}
 
-	public void generateStructure(File folder) {
+	public void generateStructure(File folder) throws IOException {
 		
 	    File[] files = folder.listFiles();
 	    if(files != null) { //some JVMs return null for empty dirs
@@ -72,14 +73,14 @@ public class ProjectTree {
 	        		file.setType(Type.node);
 	        		file.setName(f.getName());
 	        		file.setExtension(getExtension(f.getName()));
-	        		file.setFileId("5yjjyojyoi");
+	        		file.setFileId(f.getCanonicalPath());
 	        		list.add(file);
 	            }
 	        }
 	    }
-	    //folder.delete();
 	}
 	
+
 	private String getExtension(String filename) {
 		String extension = "txt";
 		System.out.println(filename);

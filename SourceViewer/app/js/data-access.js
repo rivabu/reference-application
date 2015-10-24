@@ -7,6 +7,13 @@ angular.module('sourceViewer').factory('DataAccess', ['$q', '$resource', functio
             isArray: false
         }
     });
+    
+    var resourceFile = $resource('/api/file/:id', {}, {
+        getFile: {
+            method: 'GET',
+            isArray: false
+        }
+    });
 
     var resourceProjects = $resource('/project/list', {}, {
         getProjects: {
@@ -38,6 +45,24 @@ angular.module('sourceViewer').factory('DataAccess', ['$q', '$resource', functio
 
         return deferred.promise;
     }
+    
+    function getFile(id) {
+        var deferred = $q.defer();
+
+        resourceFile.get({id: id},
+            function (success) {
+        		console.log('success: ' + success);
+                deferred.resolve(success);
+            },
+            function (error) {
+            	console.log('error: ' + error);
+                deferred.reject(error);
+            }
+        );
+
+        return deferred.promise;
+    }
+    
     
     function deleteProject(id) {
         var deferred = $q.defer();
@@ -75,6 +100,7 @@ angular.module('sourceViewer').factory('DataAccess', ['$q', '$resource', functio
 
     return {
         getTree: getTree,
+        getFile: getFile,
         deleteProject: deleteProject,
         getProjects: getProjects
     };

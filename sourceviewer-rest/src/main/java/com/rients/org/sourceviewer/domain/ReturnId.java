@@ -11,9 +11,7 @@ public class ReturnId {
 	public ReturnId(int id) {
 		this.id = id;
 	}
-	public ReturnId(String id2) {
-		this.id = Integer.parseInt(id2);
-	}
+
 	public int getId() {
 		return id;
 	}

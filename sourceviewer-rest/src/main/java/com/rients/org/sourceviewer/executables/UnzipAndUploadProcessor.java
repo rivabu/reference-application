@@ -28,6 +28,10 @@ public class UnzipAndUploadProcessor {
 			System.out.println("project id: " + projectId);
 			ProjectTree projectTree = new ProjectTree();
 			Tree tree = projectTree.generate(projectId, project.getName(), root);
+			
+			FileUploader fileUploader = new FileUploader();
+			fileUploader.uploadFiles(tree, projectId);
+			
 			int treeId = client.store(tree);
 			System.out.println("tree id: " + treeId);
 			

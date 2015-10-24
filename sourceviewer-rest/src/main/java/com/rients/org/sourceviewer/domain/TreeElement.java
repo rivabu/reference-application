@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 public class TreeElement {
 	private int id;
-	
 	private Type type;
 	
 	@JsonInclude(Include.NON_NULL)

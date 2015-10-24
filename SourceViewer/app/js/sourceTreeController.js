@@ -71,7 +71,7 @@ sourceViewer.controller('sourceTreeController', ['$rootScope', '$routeParams', '
 				endresult = endresult + '</ul>';
 			}
 			if (type === 'node') {
-				endresult = endresult + '<li id=\'' + elements[j].id + '\'><a href class=\'file ' + elements[j].extension + '\' ng-click=\"showFile(\'' + elements[j].name + '\')\">' + elements[j].name +'</a></li>';
+				endresult = endresult + '<li id=\'' + elements[j].id + '\'><a href class=\'file ' + elements[j].extension + '\' ng-click=\"showFile(\'' + elements[j].fileId + '\')\">' + elements[j].name +'</a></li>';
 			}
      	}
      	endresult = endresult + '</ul>';

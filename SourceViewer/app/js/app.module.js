@@ -1,6 +1,6 @@
 'use strict';
 
-var sourceViewer = angular.module('sourceViewer', ['ngResource', 'ngRoute', 'ngSanitize']);
+var sourceViewer = angular.module('sourceViewer', ['ngResource', 'ngRoute', 'ngSanitize', 'base64']);
 
 sourceViewer.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
