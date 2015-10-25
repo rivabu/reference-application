@@ -2,7 +2,7 @@
 
 sourceViewer.controller('sourceTreeController', ['$rootScope', '$routeParams', '$location', 'DataAccess', '$scope', function ($rootScope, $routeParams, $location, DataAccess, $scope) {
 
-    $scope.tree =  '';
+    $scope.tree = '';
     $scope.projectId = $routeParams.projectId;
     
     $scope.init = function () {
@@ -23,9 +23,7 @@ sourceViewer.controller('sourceTreeController', ['$rootScope', '$routeParams', '
     
     $scope.openCloseDir= function (id) {
     	console.log("openCloseDir: " + id);
-    	console.log("openCloseDir: " + $scope.tree);
     	angular.forEach($scope.tree, function (elem) {
-    		console.log("elem: " + elem.id);
     		if (elem.id == id) {
     			if (elem.status == 'open') {
     				elem.status = 'closed';
@@ -34,25 +32,21 @@ sourceViewer.controller('sourceTreeController', ['$rootScope', '$routeParams', '
     			}
     		}
     	})
-    	$scope.parsedTree = parseTreeToHtml($scope.tree);
+    	$scope.parsedTree = parseTreeToHtml();
     };
     
      $scope.getTree = function(projectId) {
-    	 console.log("$routeParams: " + JSON.stringify($routeParams));
-    	 console.log("getTree: " + projectId);
     	 DataAccess.getTree(projectId).then(function (result) {
-    		 $scope.tree = result.tree;
-    		 var result = parseTreeToHtml(result);
-    		 console.log(result);
-    		 $scope.parsedTree = result;
+    		 $scope.tree = result.elements;
+    		 var parsedTree = parseTreeToHtml();
+    		 $scope.parsedTree = parsedTree;
     	 }, function (result) {
             console.log('error' + result);
          });
-    	 
     };	
      
-    function parseTreeToHtml(result) {
-    	var elements = result.elements;
+    function parseTreeToHtml() {
+    	var elements = $scope.tree;
      	var endresult = '<ul>';
      	for (var j in elements) {
             var type = elements[j].type;

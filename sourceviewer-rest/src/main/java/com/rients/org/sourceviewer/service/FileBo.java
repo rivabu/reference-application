@@ -5,6 +5,7 @@ public class FileBo {
 	private int projectId;
 	private String encodedContent;
 	private String name;
+	private boolean binary;
 
 	public String getId() {
 		return id;
@@ -30,4 +31,11 @@ public class FileBo {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public boolean isBinary() {
+		return binary;
+	}
+	public void setBinary(boolean binary) {
+		this.binary = binary;
+	}
+
 }

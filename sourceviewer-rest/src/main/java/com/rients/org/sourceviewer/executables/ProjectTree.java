@@ -10,17 +10,25 @@ import com.rients.org.sourceviewer.domain.Type;
 
 public class ProjectTree {
 	int counter = 1;
-	List<TreeElement> list;
+	
 
 	public static void main(String args[]) throws IOException {
 		ProjectTree pt = new ProjectTree();
 		pt.generate(1, "TheCrudder", "E://UPLOAD");
 	}
+	
+	public Tree process(int projectId, String projectName, String root) throws IOException {
+		Tree tree = this.generate(projectId, projectName, root);
+		removeEmptyDirs(tree.getElements());
+		return tree;
+		
+	}
+	
 	public Tree generate(int projectId, String projectName, String root) throws IOException {
 		File directory = new File(root + "//processing//" + projectName);
 		Tree tree = new Tree();
 		tree.setId(projectId);
-		this.list = tree.getElements();
+		List<TreeElement> list = tree.getElements();
 		TreeElement rootElem = new TreeElement();
 		rootElem.setId(counter);
 		counter++;
@@ -28,7 +36,7 @@ public class ProjectTree {
 		rootElem.setName(projectName);
 		list.add(rootElem);
 		
-		generateStructure(directory);
+		generateStructure(directory, list);
 		
 		TreeElement endroot = new TreeElement();
 		endroot.setId(counter);
@@ -40,7 +48,7 @@ public class ProjectTree {
 		return tree;
 	}
 
-	public void generateStructure(File folder) throws IOException {
+	public void generateStructure(File folder, List<TreeElement> list) throws IOException {
 		
 	    File[] files = folder.listFiles();
 	    if(files != null) { //some JVMs return null for empty dirs
@@ -55,7 +63,7 @@ public class ProjectTree {
 		    		dir.setFileId(null);
 		    		list.add(dir);
 		    		
-	            	generateStructure(f);
+	            	generateStructure(f, list);
 	            	
 	            	TreeElement enddir = new TreeElement();
 	            	enddir.setId(counter);
@@ -80,10 +88,28 @@ public class ProjectTree {
 	    }
 	}
 	
+	private void removeEmptyDirs(List<TreeElement> list) {
+		
+		int counter = 0;
+		TreeElement[] elems = list.toArray(new TreeElement[list.size()]);
+		while (true) {
+			if (elems[counter].getType().equals(Type.endroot) ) {
+				break;
+			}
+			if (elems[counter].getType().equals(Type.dir) && (elems[counter + 1].getType().equals(Type.enddir))) {
+				list.remove(elems[counter]);
+				list.remove(elems[counter + 1]);
+				counter = 0;
+				elems = list.toArray(new TreeElement[list.size()]);
+			} else {
+				counter++;
+			}
+		}
+	}
 
 	private String getExtension(String filename) {
 		String extension = "txt";
-		System.out.println(filename);
+		//System.out.println(filename);
 		if (filename.indexOf(".") > 0 && !filename.endsWith(".")) {
 			extension = filename.substring(filename.indexOf(".") + 1);
 		}

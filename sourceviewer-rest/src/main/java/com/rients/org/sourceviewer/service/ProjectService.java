@@ -5,13 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rients.org.sourceviewer.dao.FileDAO;
 import com.rients.org.sourceviewer.dao.ProjectDAO;
+import com.rients.org.sourceviewer.dao.TreeDAO;
 
 @Service
 public class ProjectService {
 
 	@Autowired
 	ProjectDAO projectDao;
+	
+	@Autowired
+	TreeDAO treeDao;
+	
+	@Autowired
+	FileDAO fileDao;
 	
 	public List<ProjectBo> listProjects() {
 		return projectDao.getAll();
@@ -26,8 +34,10 @@ public class ProjectService {
 	}
 
 	
-	public void removeProject(int id) {
-		projectDao.deleteById(id);
+	public void removeProject(int projectId) {
+		projectDao.deleteById(projectId);
+		treeDao.deleteById(projectId);
+		fileDao.deleteById(projectId);
 	}
 
 	public int addProject(ProjectBo p) {

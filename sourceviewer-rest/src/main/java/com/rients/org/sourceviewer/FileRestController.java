@@ -41,7 +41,7 @@ public class FileRestController {
 		file.setId(fileBo.getId());
 		file.setName(fileBo.getName());
 		file.setProjectId(fileBo.getProjectId());
-		
+		file.setBinary(fileBo.isBinary());
 		return file;
 	}
 
@@ -61,6 +61,7 @@ public class FileRestController {
 		fileBo.setId(fileContent.getId());
 		fileBo.setName(fileContent.getName());
 		fileBo.setProjectId(fileContent.getProjectId());
+		fileBo.setBinary(fileContent.isBinary());
 		return fileBo;
 	}
 

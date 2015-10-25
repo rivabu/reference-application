@@ -9,23 +9,23 @@ import com.rients.org.sourceviewer.dao.TreeDAO;
 public class TreeService {
 
 	@Autowired
-	TreeDAO TreeDao;
+	TreeDAO treeDao;
 	
 	public TreeBo getTreeById(int id) {
-		return TreeDao.readById(id);
+		return treeDao.readById(id);
 	}
 
 	public void removeTree(int id) {
-		TreeDao.deleteById(id);
+		treeDao.deleteById(id);
 	}
 
 	public int addTree(TreeBo p) {
-		TreeDao.create(p);
+		treeDao.create(p);
 		return p.getId();
 	}
 
 	public int updateTree(TreeBo p) {
-		TreeDao.update(p);
+		treeDao.update(p);
 		return p.getId();
 		
 	}

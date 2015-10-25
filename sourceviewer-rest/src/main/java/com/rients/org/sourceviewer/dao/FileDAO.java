@@ -7,5 +7,7 @@ public interface FileDAO {
 	public void create(FileBo fileBo);
 
 	public FileBo readById(String id);
+	
+	public int deleteById(int projectId);
 
 }

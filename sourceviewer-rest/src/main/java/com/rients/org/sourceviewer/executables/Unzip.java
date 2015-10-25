@@ -42,13 +42,13 @@ public class Unzip {
 		for (String ignore : ignores) {
 			if (ignore.startsWith(".")) {
 				if (filename.endsWith(ignore)) {
-					System.out.println("filename: " + filename + " ignored");
+					//System.out.println("filename: " + filename + " ignored");
 					returnValue = true;
 					break;
 				}
 			} else {
 				if (filename.indexOf(ignore) != -1) {
-					System.out.println("filename: " + filename + " ignored");
+					//System.out.println("filename: " + filename + " ignored");
 					returnValue = true;
 					break;
 				}
@@ -86,7 +86,7 @@ public class Unzip {
 					createDirs(processingFolder, entryName);
 					File file = new File(processingFolder + File.separator + entryName);
 
-					System.out.println("Unzip file " + entryName + " to " + file.getAbsolutePath());
+					//System.out.println("Unzip file " + entryName + " to " + file.getAbsolutePath());
 
 					// create the directories of the zip directory
 					if (entry.isDirectory()) {

@@ -2,10 +2,13 @@
 	<div id="source-code">
 		<div id="formatted-source">
 			<pre id='source-content' class='source-code js'>
-			
 				<div ng-bind-html="getFileContent()"></div>
-		</pre>
+			</pre>
 		</div>
+
 	</div>
-  
+	<div ng-if="binary == true">
+		<br /> <img data-ng-src="data:image/png;base64,{{getFileContent()}}" />
+	</div>
+
 </div>

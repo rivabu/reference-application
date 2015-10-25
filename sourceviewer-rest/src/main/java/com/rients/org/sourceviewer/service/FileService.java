@@ -20,4 +20,7 @@ public class FileService {
 		
 	}
 
+	public void deleteByProjectId(int projectId) {
+		fileDao.deleteById(projectId);
+	}
 }

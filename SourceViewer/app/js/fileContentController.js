@@ -5,6 +5,7 @@ sourceViewer.controller('fileContentController', ['$rootScope',  'DataAccess', '
     
   	$scope.found = false;	
   	$scope.content = '';
+  	$scope.binary = false;
     
 //    var Stub = $resource('/files/:filename', {}, {'getText': {
 //        transformResponse: function(data, headersGetter, status) {
@@ -27,15 +28,21 @@ sourceViewer.controller('fileContentController', ['$rootScope',  'DataAccess', '
 		$scope.found = true;
 		 DataAccess.getFile(data).then(function (result) {
 			 
+			 $scope.binary = result.binary;
 			 console.log(result.encodedContent);
-			 var decodedString = $base64.decode(result.encodedContent);
-			// decodedString = '<test>test</test>';
-			 decodedString = decodedString.split('&').join('&amp;');
-			 decodedString = decodedString.split('>').join('&gt;');
-			 decodedString = decodedString.split('<').join('&lt;');
-			
-			 $scope.content = decodedString;
-			 console.log(decodedString);
+			 if (result.binary) {
+				 console.log('binary file found');
+				 $scope.content = result.encodedContent;
+			 } else {
+				 var decodedString = $base64.decode(result.encodedContent);
+				 // decodedString = '<test>test</test>';
+				 decodedString = decodedString.split('&').join('&amp;');
+				 decodedString = decodedString.split('>').join('&gt;');
+				 decodedString = decodedString.split('<').join('&lt;');
+				
+				 $scope.content = decodedString;
+				 console.log(decodedString);
+			 }
 		 }, function (result) {
 	        console.log('error' + result);
 	     });
