@@ -1,6 +1,6 @@
 <div ng-controller="fileContentController">
 	<div id="source-code">
-		<div >
+		<div ng-if="binary == false">
 			
 				<div hljs source="getFileContent()"></div>
 		</div>
