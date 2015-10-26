@@ -9,18 +9,11 @@
 
 <div id="fb-root"></div>
 <div ng-include="'/app/partials/header.html'"></div></div>
-  
     <div id="container">
-  
       <div class="item-list">
-  
         <h1>Reference Projecten</h1>
-
         <div class="list-header-desc">Onderstaande projecten zijn mijn reference projecten</div>
-  
         <div class="list-items">
-        
-        
           <div  ng-repeat="project in projecten | filter: search | orderBy: 'id'" class="list-item">
             <h2>
               <a href="#/main/{{project.id}}">{{project.name}}</a> <img ng-click="delete(project.id)" src="/app/images/delete.png" />
@@ -29,12 +22,8 @@
               <span>{{project.description}}</span>
             </div>
           </div>
-          
-          
         </div>
-        
       </div>
-      
       <div>
   <div class="tags">
     <h2>Tags</h2>

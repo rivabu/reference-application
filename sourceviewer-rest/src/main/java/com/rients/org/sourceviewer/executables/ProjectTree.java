@@ -20,6 +20,8 @@ public class ProjectTree {
 	public Tree process(int projectId, String projectName, String root) throws IOException {
 		Tree tree = this.generate(projectId, projectName, root);
 		removeEmptyDirs(tree.getElements());
+		reorderDirs(tree.getElements());
+		
 		return tree;
 		
 	}
@@ -61,6 +63,7 @@ public class ProjectTree {
 		    		dir.setName(f.getName());
 		    		dir.setExtension(null);
 		    		dir.setFileId(null);
+		    		dir.setStatus("open");
 		    		list.add(dir);
 		    		
 	            	generateStructure(f, list);
@@ -79,7 +82,7 @@ public class ProjectTree {
 	        		file.setId(counter);
 	        		counter++;
 	        		file.setType(Type.node);
-	        		file.setName(f.getName());
+	        		file.setName(f.getName().substring(3)); // remove zzz
 	        		file.setExtension(getExtension(f.getName()));
 	        		file.setFileId(f.getCanonicalPath());
 	        		list.add(file);
@@ -101,6 +104,29 @@ public class ProjectTree {
 				list.remove(elems[counter + 1]);
 				counter = 0;
 				elems = list.toArray(new TreeElement[list.size()]);
+			} else {
+				counter++;
+			}
+		}
+	}
+
+	private void reorderDirs(List<TreeElement> list) {
+		
+		int counter = 0;
+		TreeElement[] elems = list.toArray(new TreeElement[list.size()]);
+		while (true) {
+			if (elems[counter].getType().equals(Type.endroot) ) {
+				break;
+			}
+			// node should always come before dir
+			if (elems[counter].getType().equals(Type.dir) && (elems[counter + 1].getType().equals(Type.node))) {
+				// swap
+				TreeElement first = elems[counter];
+				TreeElement second = elems[counter + 1];
+				elems[counter] = second;
+				elems[counter + 1] = first;
+				counter++;
+				//elems = list.toArray(new TreeElement[list.size()]);
 			} else {
 				counter++;
 			}

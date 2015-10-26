@@ -98,6 +98,12 @@ public class Unzip {
 							}
 						}
 					} else {
+						String filename = file.getCanonicalPath();
+						int indexOfSlash = filename.lastIndexOf("\\");
+						if (indexOfSlash > 0) {
+							String filenameNew = filename.substring(0, indexOfSlash + 1) + "zzz" + filename.substring(indexOfSlash + 1);
+							file = new File(filenameNew);
+						}
 						FileOutputStream fOutput = new FileOutputStream(file);
 						int count = 0;
 						while ((count = zipInput.read(buffer)) > 0) {

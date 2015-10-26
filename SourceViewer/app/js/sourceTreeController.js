@@ -21,6 +21,22 @@ sourceViewer.controller('sourceTreeController', ['$rootScope', '$routeParams', '
     	console.log("file clicked: " + id);
     };
     
+    $scope.collapseAll = function() {
+    	console.log('collapseAll()');
+    	angular.forEach($scope.tree, function (elem) {
+			elem.status = 'closed';
+    	})
+    	$scope.parsedTree = parseTreeToHtml();
+    }
+    
+    $scope.expandAll = function() {
+    	console.log('expandAll()');
+    	angular.forEach($scope.tree, function (elem) {
+			elem.status = 'open';
+    	})
+    	$scope.parsedTree = parseTreeToHtml();
+    }
+
     $scope.openCloseDir= function (id) {
     	console.log("openCloseDir: " + id);
     	angular.forEach($scope.tree, function (elem) {
@@ -38,6 +54,9 @@ sourceViewer.controller('sourceTreeController', ['$rootScope', '$routeParams', '
      $scope.getTree = function(projectId) {
     	 DataAccess.getTree(projectId).then(function (result) {
     		 $scope.tree = result.elements;
+	    	 angular.forEach($scope.tree, function (elem) {
+				elem.status = 'open';
+	    	 })
     		 var parsedTree = parseTreeToHtml();
     		 $scope.parsedTree = parsedTree;
     	 }, function (result) {
