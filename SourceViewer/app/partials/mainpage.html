@@ -1,26 +1,13 @@
 <div>
     <link href="/app/css/style.css" rel="stylesheet" />
 	<link href="/app/css/source.css" rel="stylesheet" />
-  	<div id="topnav" ng-include="'/app/partials/sourceHeader.html'">Top navbar</div>
+  	<div id="topnav" ng-include="'/app/partials/sourceHeader.html'"></div>
   
   	<div id="sidebar">
   		<div ng-include="'/app/partials/project-tree.html'"></div>
   	</div>
   
-  	<div id="content">
-
-  		<div id="top-content" >Top content</div>
-  
-  		<div id="bottom-content" ng-include="'/app/partials/source.html'"></div>
-  
-  		<div id="content-resizer" 
-  			resizer="horizontal" 
-  			resizer-height="6" 
-  			resizer-top="#top-content" 
-  			resizer-bottom="#bottom-content">
-  		</div>
-  
-  	</div>
+  	<div id="content" ng-include="'/app/partials/source.html'"></div>
   
   	<div id="sidebar-resizer" 
   		resizer="vertical" 

@@ -1,7 +1,5 @@
 package com.rients.org.sourceviewer.service;
 
-import com.rients.org.sourceviewer.domain.Type;
-
 public class TreeElement {
 	private int id;
 	private String type;

@@ -41,14 +41,20 @@ public class Unzip {
 		boolean returnValue = false;
 		for (String ignore : ignores) {
 			if (ignore.startsWith(".")) {
+				// extension
 				if (filename.endsWith(ignore)) {
-					//System.out.println("filename: " + filename + " ignored");
+					returnValue = true;
+					break;
+				}
+			} else if (ignore.startsWith("/")) {
+				// directory
+				if (filename.indexOf(ignore) != -1) {
 					returnValue = true;
 					break;
 				}
 			} else {
-				if (filename.indexOf(ignore) != -1) {
-					//System.out.println("filename: " + filename + " ignored");
+				// specific files
+				if (filename.endsWith(ignore)) {
 					returnValue = true;
 					break;
 				}

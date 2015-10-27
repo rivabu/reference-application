@@ -21,31 +21,23 @@
 #content {
     position: absolute;
     top: 35px;
-    bottom: 0;
+    bottom: 0px;
     left: 306px /* 300 + 6*/;
     right: 0;
-    overflow: hidden;
+    overflow: auto;
     color: #FFF;
     
 }
 #top-content {
     position: absolute;
     top: 0;
-    bottom: 866px; /* 130 + 6 */
+    bottom: 0px; /* 130 + 6 */
     left: 0;
     right: 0;
     background-color: #777;
     overflow: auto;
 }
-#bottom-content {
-    position: absolute;
-    height: 860px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow: auto;
-    background-color: #f8f8f8;
-}
+
 
 #sidebar-resizer {
 	background-color: #666;
@@ -56,15 +48,7 @@
     width: 6px;
     cursor: e-resize;
 }
-#content-resizer {
-    position: absolute;
-    height: 6px;
-    bottom: 860px;
-    left: 0;
-    right: 0;
-    background-color: #666;
-    cursor: n-resize;
-}
+
 
 #sidebar-resizer:hover, #preview-resizer:hover {
 	background-color: #AAA;

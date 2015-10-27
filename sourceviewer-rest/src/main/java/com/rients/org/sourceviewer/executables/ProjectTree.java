@@ -78,14 +78,16 @@ public class ProjectTree {
 		    		list.add(enddir);
 	            	
 	            } else {
-	            	TreeElement file = new TreeElement();
-	        		file.setId(counter);
-	        		counter++;
-	        		file.setType(Type.node);
-	        		file.setName(f.getName().substring(3)); // remove zzz
-	        		file.setExtension(getExtension(f.getName()));
-	        		file.setFileId(f.getCanonicalPath());
-	        		list.add(file);
+	            	if (f.length() < 5000) {
+		            	TreeElement file = new TreeElement();
+		        		file.setId(counter);
+		        		counter++;
+		        		file.setType(Type.node);
+		        		file.setName(f.getName().substring(3)); // remove zzz
+		        		file.setExtension(getExtension(f.getName()));
+		        		file.setFileId(f.getCanonicalPath());
+		        		list.add(file);
+	            	}
 	            }
 	        }
 	    }

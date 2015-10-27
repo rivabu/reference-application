@@ -1,5 +1,6 @@
 package com.rients.org.sourceviewer.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -12,7 +13,10 @@ public class TreeElement {
 	
 	@JsonInclude(Include.NON_NULL)
 	private String name;
-	
+
+	@JsonIgnore
+	private String tempName;
+
 	@JsonInclude(Include.NON_NULL)
 	private String fileId;
 	
@@ -55,6 +59,11 @@ public class TreeElement {
 	public void setFileId(String fileId) {
 		this.fileId = fileId;
 	}
-	
+	public String getTempName() {
+		return tempName;
+	}
+	public void setTempName(String tempName) {
+		this.tempName = tempName;
+	}
 
 }

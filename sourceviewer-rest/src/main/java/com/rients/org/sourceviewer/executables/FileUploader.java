@@ -18,6 +18,7 @@ import com.rients.org.sourceviewer.domain.Type;
 
 import sun.misc.BASE64Encoder;
 
+@SuppressWarnings("restriction")
 public class FileUploader {
 	String root = null;
 	List<String> binaryExtensions = null;
@@ -27,7 +28,6 @@ public class FileUploader {
 		this.root = root;
 	}
 
-	@SuppressWarnings("restriction")
 	public void uploadFiles(Tree tree, int projectId) throws IOException {
 		if (binaryExtensions == null) {
 			loadBinaryExtensions();
@@ -39,9 +39,10 @@ public class FileUploader {
 				FileContent fileContent = new FileContent();
 				fileContent.setProjectId(projectId);
 				fileContent.setName(elem.getName());
-				//System.out.println("uploading: " + elem.getFileId());
+				File file = new File(elem.getFileId());
+				System.out.println("uploading: " + elem.getFileId());
 				if (isBinary(elem.getExtension())) {
-					BufferedImage img = ImageIO.read(new File(elem.getFileId()));
+					BufferedImage img = ImageIO.read(file);
 					ByteArrayOutputStream bos = new ByteArrayOutputStream();
 					ImageIO.write(img, elem.getExtension(), bos);
 					byte[] imageBytes = bos.toByteArray();
@@ -52,8 +53,8 @@ public class FileUploader {
 					fileContent.setBinary(true);
 
 				} else {
-					String file = FileUtils.readFileToString(new File(elem.getFileId()));
-					byte[] encoded = Base64.encodeBase64(file.getBytes());
+					String content = FileUtils.readFileToString(file);
+					byte[] encoded = Base64.encodeBase64(content.getBytes());
 					fileContent.setEncodedContent(new String(encoded));
 					fileContent.setBinary(false);
 				}

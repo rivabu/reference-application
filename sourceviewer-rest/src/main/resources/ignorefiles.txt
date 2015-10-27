@@ -6,3 +6,17 @@
 .project
 /META-INF
 /target
+.log
+/node_modules
+/.idea
+.ico
+Web.config
+Web.Debug.config
+.gitignore
+.tern-project
+.bowerrc
+.gitkeep
+.eot
+.ttf
+.svg
+.woff
