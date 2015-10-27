@@ -1,25 +1,32 @@
-<link href="/app/css/source.css" rel="stylesheet" />
+<div>
+    <link href="/app/css/style.css" rel="stylesheet" />
+	<link href="/app/css/source.css" rel="stylesheet" />
+  	<div id="topnav" ng-include="'/app/partials/sourceHeader.html'">Top navbar</div>
+  
+  	<div id="sidebar">
+  		<div ng-include="'/app/partials/project-tree.html'"></div>
+  	</div>
+  
+  	<div id="content">
 
-	<header class="wrapper clearfix">
-		<div ng-include="'/app/partials/sourceHeader.html'"></div>
-		<div class="breadcrumb">
-			<span id="guide-breadcrumb"></span> <span class="tip">Tip: click on underlined words in the guide to highlight source code</span>
-		</div>
-	</header>
-	<div id="container">
-		<div id="splitter">
-			<div class="left-panel">
-				<div ng-include="'/app/partials/project-tree.html'"></div>
-			</div>
-			<div class="vsplitter">
-				<div class="minimizer"></div>
-			</div>
-			<div class="right-panel">
-				<div ng-include="'/app/partials/source.html'"></div>
-			</div>
-		</div>
-		<div class="lesson-details markdown" id="guide" >
-		
-			<div class="md" ng-include="'/app/partials/guide.html'"></div>
-		</div>
-	</div>
+  		<div id="top-content" >Top content</div>
+  
+  		<div id="bottom-content" ng-include="'/app/partials/source.html'"></div>
+  
+  		<div id="content-resizer" 
+  			resizer="horizontal" 
+  			resizer-height="6" 
+  			resizer-top="#top-content" 
+  			resizer-bottom="#bottom-content">
+  		</div>
+  
+  	</div>
+  
+  	<div id="sidebar-resizer" 
+  		resizer="vertical" 
+  		resizer-width="6" 
+  		resizer-left="#sidebar" 
+  		resizer-right="#content"
+  		resizer-max="400">
+  	</div>
+</div>
