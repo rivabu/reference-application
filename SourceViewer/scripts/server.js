@@ -22,25 +22,25 @@ console.log('Serving static content from' + __dirname + '/..');
 
 //get tree by id
 app.get('/tree/:id', function(req, res) {
-    var newurl = apiServer + '/sourceviewer-rest/tree/'+req.params.id;
+    var newurl = apiServer + '/tree/'+req.params.id;
   	request(newurl).pipe(res)
 });
 
 //get file by id
 app.get('/file/:id', function(req, res) {
-    var newurl = apiServer + '/sourceviewer-rest/file/'+req.params.id;
+    var newurl = apiServer + '/file/'+req.params.id;
   	request(newurl).pipe(res)
 });
 
 //get all projects
 app.get('/project/list', function(req, res) {
-    var newurl = apiServer + '/sourceviewer-rest/project/list';
+    var newurl = apiServer + '/project/list';
   	request(newurl).pipe(res)
 //	res.send(projecten);
 });
 //delete proejct
 app.delete('/project/:id', function(req, res) {
-    forwardPostPutDelete(req, res, 'DELETE', '/sourceviewer-rest/project/'+req.params.id);
+    forwardPostPutDelete(req, res, 'DELETE', '/project/'+req.params.id);
 
 });
 
@@ -85,5 +85,5 @@ function forwardPostPutDelete(req, res, method, path) {
 }
 
 
-app.listen(3000);
-console.log('Listening on port 3000');
+app.listen(3001);
+console.log('Listening on port 3001');
