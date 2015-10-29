@@ -4,7 +4,9 @@ var request = require('request');
 var querystring = require('querystring');
 var http = require('http');
 var app = express();
-var apiServer = 'http://127.0.0.1:8081';
+var port = 8081;
+var host = '127.0.0.1';
+var apiServer = 'http://' + host + ':' + port;
 
 
 // simple logger
@@ -38,18 +40,21 @@ app.get('/project/list', function(req, res) {
   	request(newurl).pipe(res)
 //	res.send(projecten);
 });
-//delete proejct
+//delete project
 app.delete('/project/:id', function(req, res) {
     forwardPostPutDelete(req, res, 'DELETE', '/project/'+req.params.id);
-
+});
+//put project
+app.put('/project', function(req, res) {
+    forwardPostPutDelete(req, res, 'PUT', '/project');
 });
 
 
 function forwardPostPutDelete(req, res, method, path) {
 	var data = JSON.stringify(req.body);
     var options = {
-        host: '127.0.0.1',
-        port: 8081,
+        host: host,
+        port: port,
         path: path,
         method: method,
         headers: {
